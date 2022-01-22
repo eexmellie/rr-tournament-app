@@ -1,0 +1,1 @@
+export const MAX_GAMES_PER_MATCH = 3;

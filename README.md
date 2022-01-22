@@ -1,4 +1,4 @@
-# klask-tournament-app
+# rr-tournament-app
 
 ## Project setup
 ```
