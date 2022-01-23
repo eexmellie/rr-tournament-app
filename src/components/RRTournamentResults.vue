@@ -1,42 +1,52 @@
 <template>
-	<div class="result">
-		<template v-if="winners">
-			<div class="result__winners"><b>Winners:</b> {{ winners }}</div>
-		</template>
-		<table class="result__table">
-			<thead>
-				<tr>
-					<th></th>
-					<th
-						v-for="playerId in playersOrder"
-						:key="playerId"
-					>
-						{{ playerNames[playerId] }}
-					</th>
-					<th class="result__contrast-cell">Points</th>
-					<th class="result__contrast-cell">Rank</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr
-					v-for="playerAId in playersOrder"
-					:key="playerAId"
-				>
-					<td>{{ playerNames[playerAId] }}</td>
-					<td
-						class="result__cell"
-						:class="{ empty: playerAId === playerBId }"
-						v-for="playerBId in playersOrder"
-						:key="playerBId"
-					>
-						{{ formatMatchResult(playerAId, playerBId) }}
-					</td>
-					<td class="result__cell result__contrast-cell">{{ totalPoints[playerAId] }}</td>
-					<td class="result__cell result__contrast-cell">{{ rank[playerAId] || "-" }}</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+  <div class="result">
+    <template v-if="winners">
+      <div class="result__winners">
+        <b>Winners:</b> {{ winners }}
+      </div>
+    </template>
+    <table class="result__table">
+      <thead>
+        <tr>
+          <th />
+          <th
+            v-for="playerId in playersOrder"
+            :key="playerId"
+          >
+            {{ playerNames[playerId] }}
+          </th>
+          <th class="result__contrast-cell">
+            Points
+          </th>
+          <th class="result__contrast-cell">
+            Rank
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="playerAId in playersOrder"
+          :key="playerAId"
+        >
+          <td>{{ playerNames[playerAId] }}</td>
+          <td
+            v-for="playerBId in playersOrder"
+            :key="playerBId"
+            class="result__cell"
+            :class="{ empty: playerAId === playerBId }"
+          >
+            {{ formatMatchResult(playerAId, playerBId) }}
+          </td>
+          <td class="result__cell result__contrast-cell">
+            {{ totalPoints[playerAId] }}
+          </td>
+          <td class="result__cell result__contrast-cell">
+            {{ rank[playerAId] || "-" }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>

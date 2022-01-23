@@ -1,33 +1,39 @@
 <template>
-	<div id="app" class="app">
-		<div class="app__sidebar">
-			<div class="app__title title">Round Robin Tournament App</div>
-			<RRTournamentList
-				v-if="tournaments.length"
-				:tournaments="tournaments"
-				v-model="selectedTournamentIndex"
-				@tournament-create="createTournament"
-
-			/>
-		</div>
-		<main class="app__body">
-			<div class="app__content">
-				<RRTournament
-					v-if="selectedTournament"
-					v-bind="selectedTournament"
-					:tournament-index="selectedTournamentIndex"
-					:key="selectedTournament.id"
-					@tournament-end="endTournament"
-					@tournament-delete="deleteTournament"
-				/>
-				<RRTournamentCreate
-					v-else
-					@tournament-start="startTournament"
-				/>
-			</div>
-			<footer class="app__footer footer">Powered by Vue.js</footer>
-		</main>
-	</div>
+  <div
+    id="app"
+    class="app"
+  >
+    <div class="app__sidebar">
+      <div class="app__title title">
+        Round Robin Tournament App
+      </div>
+      <RRTournamentList
+        v-if="tournaments.length"
+        v-model="selectedTournamentIndex"
+        :tournaments="tournaments"
+        @tournament-create="createTournament"
+      />
+    </div>
+    <main class="app__body">
+      <div class="app__content">
+        <RRTournament
+          v-if="selectedTournament"
+          :key="selectedTournament.id"
+          v-bind="selectedTournament"
+          :tournament-index="selectedTournamentIndex"
+          @tournament-end="endTournament"
+          @tournament-delete="deleteTournament"
+        />
+        <RRTournamentCreate
+          v-else
+          @tournament-start="startTournament"
+        />
+      </div>
+      <footer class="app__footer footer">
+        Powered by Vue.js
+      </footer>
+    </main>
+  </div>
 </template>
 
 <script>
@@ -52,6 +58,23 @@ export default {
 	computed: {
 		selectedTournament() {
 			return this.tournaments[this.selectedTournamentIndex];
+		}
+	},
+	watch: {
+		tournaments: {
+			deep: true,
+			handler () {
+				localStorage.setItem("tournaments", JSON.stringify(this.tournaments));
+			}
+		}
+	},
+	mounted() {
+		if (localStorage.getItem("tournaments")) {
+			try {
+				this.tournaments = JSON.parse(localStorage.getItem("tournaments"));
+			} catch(e) {
+				localStorage.removeItem('tournaments');
+			}
 		}
 	},
 	methods: {
@@ -83,23 +106,6 @@ export default {
 		},
 		showTournament(index) {
 			this.selectedTournamentIndex = index;
-		}
-	},
-	mounted() {
-		if (localStorage.getItem("tournaments")) {
-			try {
-				this.tournaments = JSON.parse(localStorage.getItem("tournaments"));
-			} catch(e) {
-				localStorage.removeItem('tournaments');
-			}
-		}
-	},
-	watch: {
-		tournaments: {
-			deep: true,
-			handler () {
-				localStorage.setItem("tournaments", JSON.stringify(this.tournaments));
-			}
 		}
 	}
 }

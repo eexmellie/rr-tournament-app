@@ -1,59 +1,63 @@
 <template>
-	<div class="round">
-		<div class="round__title title">Round {{ roundNumber }}</div>
-		<table>
-			<thead>
-				<tr>
-					<th>VS</th>
-					<th
-						v-for="i in MAX_GAMES_PER_MATCH"
-						:key="i"
-					>
-						Game {{ i }}
-					</th>
-					<th title="Chicken Dinner">Winner</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr
-					v-for="match in round.matches"
-					:key="match.id"
-				>
-					<td>{{ playerNames[match.playerIds[0]] }} vs {{ playerNames[match.playerIds[1]] }}</td>
-					<td
-						v-for="game in match.games"
-						:key="game.id"
-					>
-						{{ `${game.scores[0]} - ${game.scores[1]}` }}
-					</td>
-					<td v-if="!match.matchWinnerId">
-						<button
-							type="button"
-							class="button button--round"
-							@click="setActiveMatch(match)"
-						>
-							+
-						</button>
-					</td>
-					<td
-						v-for="i in numberOfUnplayableGames[match.id]"
-						:key="i"
-					>
-						-
-					</td>
-					<td>{{ playerNames[match.matchWinnerId] }}</td>
-				</tr>
-			</tbody>
-		</table>
-		<RRTournamentAddScores
-			v-if="activeMatch"
-			ref="modal"
-			:player-b-name="playerNames[activeMatch.playerIds[0]]"
-			:player-a-name="playerNames[activeMatch.playerIds[0]]"
-			@submit-match-scores="setGameScores"
-			@cancel-match-scores="unsetActiveMatch"
-		/>
-	</div>
+  <div class="round">
+    <div class="round__title title">
+      Round {{ roundNumber }}
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>VS</th>
+          <th
+            v-for="i in MAX_GAMES_PER_MATCH"
+            :key="i"
+          >
+            Game {{ i }}
+          </th>
+          <th title="Chicken Dinner">
+            Winner
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="match in round.matches"
+          :key="match.id"
+        >
+          <td>{{ playerNames[match.playerIds[0]] }} vs {{ playerNames[match.playerIds[1]] }}</td>
+          <td
+            v-for="game in match.games"
+            :key="game.id"
+          >
+            {{ `${game.scores[0]} - ${game.scores[1]}` }}
+          </td>
+          <td v-if="!match.matchWinnerId">
+            <button
+              type="button"
+              class="button button--round"
+              @click="setActiveMatch(match)"
+            >
+              +
+            </button>
+          </td>
+          <td
+            v-for="i in numberOfUnplayableGames[match.id]"
+            :key="i"
+          >
+            -
+          </td>
+          <td>{{ playerNames[match.matchWinnerId] }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <RRTournamentAddScores
+      v-if="activeMatch"
+      ref="modal"
+      :player-b-name="playerNames[activeMatch.playerIds[0]]"
+      :player-a-name="playerNames[activeMatch.playerIds[0]]"
+      @submit-match-scores="setGameScores"
+      @cancel-match-scores="unsetActiveMatch"
+    />
+  </div>
 </template>
 
 <script>

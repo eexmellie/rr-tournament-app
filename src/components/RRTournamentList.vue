@@ -1,34 +1,34 @@
 <template>
-	<div class="sidebar">
-		<button
-			@click="createTournament"
-			class="sidebar__item sidebar__button button"
-		>
-			Create Tournament
-		</button>
-		<ul class="sidebar__list">
-			<li
-				v-for="(tournament, index) in tournaments"
-				:key="tournament.id"
-				class="sidebar__item"
-			>
-				<input
-					type="radio"
-					name="tournament-list"
-					:value="index"
-					:id="`tournament-list-${tournament.id}`"
-					v-model="selectedTournament"
-					class="sidebar__radio"
-				>
-				<label
-					:for="`tournament-list-${tournament.id}`"
-					class="sidebar__label"
-				>
-					{{ tournament.name }}
-				</label>
-			</li>
-		</ul>
-	</div>
+  <div class="sidebar">
+    <button
+      class="sidebar__item sidebar__button button"
+      @click="createTournament"
+    >
+      Create Tournament
+    </button>
+    <ul class="sidebar__list">
+      <li
+        v-for="(tournament, index) in tournaments"
+        :key="tournament.id"
+        class="sidebar__item"
+      >
+        <input
+          :id="`tournament-list-${tournament.id}`"
+          v-model="selectedTournament"
+          type="radio"
+          name="tournament-list"
+          :value="index"
+          class="sidebar__radio"
+        >
+        <label
+          :for="`tournament-list-${tournament.id}`"
+          class="sidebar__label"
+        >
+          {{ tournament.name }}
+        </label>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>

@@ -1,32 +1,34 @@
 <template>
-	<div class="tournament">
-		<div class="tournament__header">
-			<h2 class="tournament__header-item title">{{ name }}</h2>
-			<button
-				class="tournament__header-item button"
-				v-if="canTournamentBeEnded"
-				@click="endTournament"
-			>
-				End tournament
-			</button>
-			<button
-				class="tournament__header-item button button--danger"
-				@click="deleteTournament"
-			>
-				Delete tournament
-			</button>
-		</div>
-		<RRTournamentResults v-bind="$props" />
-		<RRTournamentRound
-			class="tournament__round"
-			v-for="(round, index) in rounds"
-			:key="round.id"
-			:round="round"
-			:round-number="index + 1"
-			:players-order="playersOrder"
-			:player-names="playerNames"
-		/>
-	</div>
+  <div class="tournament">
+    <div class="tournament__header">
+      <h2 class="tournament__header-item title">
+        {{ name }}
+      </h2>
+      <button
+        v-if="canTournamentBeEnded"
+        class="tournament__header-item button"
+        @click="endTournament"
+      >
+        End tournament
+      </button>
+      <button
+        class="tournament__header-item button button--danger"
+        @click="deleteTournament"
+      >
+        Delete tournament
+      </button>
+    </div>
+    <RRTournamentResults v-bind="$props" />
+    <RRTournamentRound
+      v-for="(round, index) in rounds"
+      :key="round.id"
+      class="tournament__round"
+      :round="round"
+      :round-number="index + 1"
+      :players-order="playersOrder"
+      :player-names="playerNames"
+    />
+  </div>
 </template>
 
 <script>
