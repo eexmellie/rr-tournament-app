@@ -83,17 +83,16 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .tournament__header {
 	display: flex;
-	margin-bottom: 30px;
+	margin-bottom: var(--spacing-big);
 }
 .tournament__header-item {
 	align-self: flex-start;
 }
 .tournament__header-item:not(:last-child) {
-	margin-right: 15px;
+	margin-right: var(--spacing);
 }
 .tournament__header-item:first-child {
 	margin-right: auto;

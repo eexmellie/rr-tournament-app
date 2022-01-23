@@ -5,14 +5,25 @@
 			<thead>
 				<tr>
 					<th>VS</th>
-					<th v-for="i in MAX_GAMES_PER_MATCH" :key="i">Game {{ i }}</th>
+					<th
+						v-for="i in MAX_GAMES_PER_MATCH"
+						:key="i"
+					>
+						Game {{ i }}
+					</th>
 					<th title="Chicken Dinner">Winner</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="match in round.matches" :key="match.id">
+				<tr
+					v-for="match in round.matches"
+					:key="match.id"
+				>
 					<td>{{ playerNames[match.playerIds[0]] }} vs {{ playerNames[match.playerIds[1]] }}</td>
-					<td v-for="game in match.games" :key="game.id">
+					<td
+						v-for="game in match.games"
+						:key="game.id"
+					>
 						{{ `${game.scores[0]} - ${game.scores[1]}` }}
 					</td>
 					<td v-if="!match.matchWinnerId">
@@ -24,8 +35,13 @@
 							+
 						</button>
 					</td>
-					<td v-for="i in numberOfUnplayableGames[match.id]" :key="i">-</td>
-					<td>{{  playerNames[match.matchWinnerId] }}</td>
+					<td
+						v-for="i in numberOfUnplayableGames[match.id]"
+						:key="i"
+					>
+						-
+					</td>
+					<td>{{ playerNames[match.matchWinnerId] }}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -132,12 +148,11 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .round {
-	margin-bottom: 30px;
+	margin-bottom: var(--spacing-big);
 }
 .round__title {
-	margin-bottom: 15px;
+	margin-bottom: var(--spacing);
 }
 </style>

@@ -1,58 +1,56 @@
 <template>
-	<!-- <div class="dialog-container">	 -->
-		<dialog class="dialog">
-			<form
-				class="form"
-				@submit.prevent="submitMatchScores"
+	<dialog class="dialog">
+		<form
+			class="form"
+			@submit.prevent="submitMatchScores"
+		>
+			<label
+				class="form__label"
+				for="player-a-name"
 			>
-				<label
-					class="form__label"
-					for="player-a-name"
+				{{ playerAName }}
+			</label>
+			<input
+				id="player-a-name"
+				type="number"
+				class="form__input"
+				min="0"
+				step="1"
+				required
+				v-model.number="playerAScore"
+			>
+			<label
+				class="form__label"
+				for="player-b-name"
+			>
+				{{ playerBName }}
+			</label>
+			<input
+				id="player-b-name"
+				type="number"
+				class="form__input"
+				min="0"
+				step="1"
+				required
+				v-model.number="playerBScore"
+			>
+			<div class="form__row">
+				<button
+					type="button"
+					class="button button--danger"
+					@click="cancelModal"
 				>
-					{{ playerAName }}
-				</label>
-				<input
-					id="player-a-name"
-					class="form__input"
-					type="number"
-					min="0"
-					step="1"
-					required
-					v-model.number="playerAScore"
+					Cancel
+				</button>
+				<button
+					type="submit"
+					class="button"
 				>
-				<label
-					class="form__label"
-					for="player-b-name"
-				>
-					{{ playerBName }}
-				</label>
-				<input
-					id="player-b-name"
-					class="form__input"
-					type="number"
-					min="0"
-					step="1"
-					required
-					v-model.number="playerBScore"
-				>
-				<div class="form__row">
-					<button
-						class="button button--danger"
-						type="button"
-						@click="cancelModal"
-					>
-						Cancel
-					</button>
-					<button
-						class="button"
-						type="submit"
-					>
-						Add Scores
-					</button>
-				</div>
-			</form>
-		</dialog>
-	<!-- </div> -->
+					Add Scores
+				</button>
+			</div>
+		</form>
+	</dialog>
 </template>
 
 <script>
@@ -91,19 +89,13 @@ export default {
 </script>
 
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 .dialog {
-	/*width: 300px;*/
-    /*height: 300px;*/
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 30px;
-    border: none;
-    border-radius: 5px;
+	padding: var(--spacing-big);
+	border: none;
+	border-radius: 5px;
 }
-.dialog::backdrop {
-	background-color: rgba(0, 0, 0, .7);
+.dialog::backdrop { /* native */
+	background-color: rgba(0, 0, 0, .6);
 }
 </style>

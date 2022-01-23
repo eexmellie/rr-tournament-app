@@ -70,7 +70,7 @@ export default {
 .sidebar__item {
 	display: flex;
 	align-items: center;
-	margin-bottom: 5px;
+	margin-bottom: var(--spacing-small);
 	font-size: 16px;
 	cursor: pointer;
 }
@@ -82,10 +82,10 @@ export default {
 	z-index: -1;
 }
 .sidebar__label {
-	padding: 10px 15px;
+	padding: calc(var(--spacing-small) * 2) var(--spacing);
 	width: 100%;
 	border: 1px solid transparent;
-	border-radius: 5px;
+	border-radius: var(--spacing-small);
 }
 .sidebar__radio:checked + .sidebar__label {
 	color: var(--primary-contrast-color);
@@ -95,7 +95,7 @@ export default {
 	border-color: var(--secondary-color);
 }
 .sidebar__button {
-	margin-bottom: 20px;
+	margin-bottom: var(--spacing-big);
 	width: 100%;
 }
 </style>

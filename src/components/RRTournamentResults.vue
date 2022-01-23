@@ -13,8 +13,8 @@
 					>
 						{{ playerNames[playerId] }}
 					</th>
-					<th>Points</th>
-					<th>Rank</th>
+					<th class="result__contrast-cell">Points</th>
+					<th class="result__contrast-cell">Rank</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -31,8 +31,8 @@
 					>
 						{{ formatMatchResult(playerAId, playerBId) }}
 					</td>
-					<td class="result__cell">{{ totalPoints[playerAId] }}</td>
-					<td class="result__cell">{{ rank[playerAId] || "-" }}</td>
+					<td class="result__cell result__contrast-cell">{{ totalPoints[playerAId] }}</td>
+					<td class="result__cell result__contrast-cell">{{ rank[playerAId] || "-" }}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -147,6 +147,7 @@ export default {
 		}
 	},
 	methods: {
+		// TODO: add method to edit game results
 		formatMatchResult(playerAId, playerBId) {
 			const isSamePlayer = playerAId === playerBId;
 			if (isSamePlayer) {
@@ -169,13 +170,12 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .result {
-	margin-bottom: 30px;
+	margin-bottom: var(--spacing-big);
 }
 .result__winners {
-	margin-bottom: 15px;
+	margin-bottom: var(--spacing);
 }
 .result__table td,
 .result__table th {
@@ -184,6 +184,9 @@ export default {
 .result__cell {
 	vertical-align: middle;
 	text-align: center;
+}
+.result__contrast-cell {
+	background-color: var(--secondary-contrast-color);
 }
 .empty {
 	background-color: var(--disabled-color);
