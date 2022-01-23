@@ -1,6 +1,6 @@
 <template>
 	<div class="round">
-		<div>Round {{ roundNumber }}</div>
+		<div class="round__title title">Round {{ roundNumber }}</div>
 		<table>
 			<thead>
 				<tr>
@@ -18,9 +18,10 @@
 					<td v-if="!match.matchWinnerId">
 						<button
 							type="button"
+							class="button button--round"
 							@click="setActiveMatch(match)"
 						>
-							add
+							+
 						</button>
 					</td>
 					<td v-for="i in numberOfUnplayableGames[match.id]" :key="i">-</td>
@@ -133,4 +134,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.round {
+	margin-bottom: 30px;
+}
+.round__title {
+	margin-bottom: 15px;
+}
 </style>

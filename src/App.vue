@@ -1,16 +1,17 @@
 <template>
-	<div id="app">
-		<header>Round Robin Tournament App</header>
-		<main>
-			<div class="sidebar">
-				<RRTournamentList
-					:tournaments="tournaments"
-					v-model="selectedTournamentIndex"
-					@tournament-create="createTournament"
+	<div id="app" class="app">
+		<div class="app__sidebar">
+			<div class="app__title title">Round Robin Tournament App</div>
+			<RRTournamentList
+				v-if="tournaments.length"
+				:tournaments="tournaments"
+				v-model="selectedTournamentIndex"
+				@tournament-create="createTournament"
 
-				/>
-			</div>
-			<div class="content">
+			/>
+		</div>
+		<main class="app__body">
+			<div class="app__content">
 				<RRTournament
 					v-if="selectedTournament"
 					v-bind="selectedTournament"
@@ -23,8 +24,8 @@
 					@tournament-start="startTournament"
 				/>
 			</div>
+			<footer class="app__footer footer">Powered by Vue.js</footer>
 		</main>
-		<footer>Powered by Vue.js</footer>
 	</div>
 </template>
 
@@ -101,18 +102,105 @@ export default {
 </script>
 
 <style>
-#app {
+:root {
+  --primary-color: #4B49AC;
+  --secondary-color: #7DA0FA;
+  --primary-contrast-color: #fff;
+  --secondary-contrast-color:  #F5F7FF;
+  --table-border-color: #ced4da;
+  --disabled-color:  rgba(0, 0, 0, 0.25);
+  --text-color: #1f1f1f;
+  --danger-color: #8C1C13;
+
+  --small-spacing: 12px;
+  --normal-spacing: calc(var(--small-spacing) * 2);
+}
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+body {
 	font-family: Avenir, Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
-	margin-top: 60px;
+	font-size: 18px;
+	background-color: var(--primary-contrast-color);
+	color: var(--text-color);
 }
-main {
+table {
+	border-collapse: collapse;
+}
+td, th {
+	padding: 10px;
+}
+.app {
+	min-height: 100vh;
 	display: flex;
 }
-.sidebar {
-	background-color: darkgrey;
+.app__title {
+	margin-bottom: 30px;
+}
+.app__sidebar {
+	width: 250px;
+	padding: 15px;
+	background-color: var(--secondary-contrast-color);
+}
+.app__body {
+	width: calc(100% - 250px);
+	display: flex;
+	flex-direction: column;
+}
+.app__footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 60px;
+}
+.app__content {
+	flex-grow: 1;
+	min-height: calc(100vh - 60px);
+	padding: 40px;
+	padding-bottom: 0;
+}
+.title {
+	color:  var(--primary-color);
+	font-weight: 700;
+	font-size: 25px;
+}
+.button {
+	min-height: 40px;
+	padding: 10px 15px;
+	font-weight: 700;
+	color: var(--primary-contrast-color);
+	background-color: var(--primary-color);
+	border: 1px solid transparent;
+	border-radius: 5px;
+}
+.button--round {
+	padding: 0;
+	width: 20px;
+	height: 20px;
+	min-height: 20px;
+	border-radius: 50%;
+	display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.button:hover:enabled {
+	color: inherit;
+	background-color: inherit;
+	border: 1px solid var(--primary-color);
+}
+.button--danger {
+	background-color: var(--danger-color);
+}
+.button--danger:hover:enabled {
+	border-color: var(--danger-color);
+}
+.button:disabled {
+	background-color: var(--disabled-color);
 }
 </style>

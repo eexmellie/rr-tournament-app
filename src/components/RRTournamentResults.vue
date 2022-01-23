@@ -1,10 +1,9 @@
 <template>
-	<div class="results">
+	<div class="result">
 		<template v-if="winners">
-			<div>Winners: {{ winners }}</div>
+			<div class="result__winners"><b>Winners:</b> {{ winners }}</div>
 		</template>
-		<div>Rankings</div>
-		<table>
+		<table class="result__table">
 			<thead>
 				<tr>
 					<th></th>
@@ -25,14 +24,15 @@
 				>
 					<td>{{ playerNames[playerAId] }}</td>
 					<td
+						class="result__cell"
+						:class="{ empty: playerAId === playerBId }"
 						v-for="playerBId in playersOrder"
 						:key="playerBId"
-						:class="{ empty: playerAId === playerBId }"
 					>
 						{{ formatMatchResult(playerAId, playerBId) }}
 					</td>
-					<td>{{ totalPoints[playerAId] }}</td>
-					<td>{{ rank[playerAId] || "-" }}</td>
+					<td class="result__cell">{{ totalPoints[playerAId] }}</td>
+					<td class="result__cell">{{ rank[playerAId] || "-" }}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -171,14 +171,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	table {
-		border-collapse: collapse;
-	}
-	td, th {
-		border: 1px solid black;
-		padding: 10px;
-	}
-	.empty {
-		background-color: darkgrey;
-	}
+.result {
+	margin-bottom: 30px;
+}
+.result__winners {
+	margin-bottom: 15px;
+}
+.result__table td,
+.result__table th {
+	border: 1px solid var(--table-border-color);
+}
+.result__cell {
+	vertical-align: middle;
+	text-align: center;
+}
+.empty {
+	background-color: var(--disabled-color);
+}
 </style>

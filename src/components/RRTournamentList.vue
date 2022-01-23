@@ -1,31 +1,33 @@
 <template>
-	<div>
-		<ul v-if="tournaments.length">
+	<div class="sidebar">
+		<button
+			@click="createTournament"
+			class="sidebar__item sidebar__button button"
+		>
+			Create Tournament
+		</button>
+		<ul class="sidebar__list">
 			<li
 				v-for="(tournament, index) in tournaments"
 				:key="tournament.id"
+				class="sidebar__item"
 			>
-				<label
-					:for="`tournament-list-${tournament.id}`"
-				>
-					{{ tournament.name }}
-				</label>
 				<input
 					type="radio"
 					name="tournament-list"
 					:value="index"
 					:id="`tournament-list-${tournament.id}`"
 					v-model="selectedTournament"
+					class="sidebar__radio"
 				>
+				<label
+					:for="`tournament-list-${tournament.id}`"
+					class="sidebar__label"
+				>
+					{{ tournament.name }}
+				</label>
 			</li>
 		</ul>
-		<div>-----</div>
-		<button
-			v-if="tournaments.length"
-			@click="createTournament"
-		>
-			Create Tournament
-		</button>
 	</div>
 </template>
 
@@ -60,6 +62,40 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.sidebar__list {
+	list-style: none;
+	text-align: left;
+}
+.sidebar__item {
+	display: flex;
+	align-items: center;
+	margin-bottom: 5px;
+	font-size: 16px;
+	cursor: pointer;
+}
+.sidebar__radio {
+	position: absolute;
+	opacity: 0; 
+	width: 1em;
+	height: 1em;
+	z-index: -1;
+}
+.sidebar__label {
+	padding: 10px 15px;
+	width: 100%;
+	border: 1px solid transparent;
+	border-radius: 5px;
+}
+.sidebar__radio:checked + .sidebar__label {
+	color: var(--primary-contrast-color);
+	background-color: var(--secondary-color);
+}
+.sidebar__label:hover {
+	border-color: var(--secondary-color);
+}
+.sidebar__button {
+	margin-bottom: 20px;
+	width: 100%;
+}
 </style>

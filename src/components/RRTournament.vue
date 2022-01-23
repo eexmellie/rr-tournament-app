@@ -1,9 +1,18 @@
 <template>
-	<div class="tournament">	
-		<h2>{{ name }}</h2>
+	<div class="tournament">
+		<div class="tournament__header">
+			<h2 class="tournament__header-item title">{{ name }}</h2>
+			<button
+				class="tournament__header-item button"
+				v-if="canTournamentBeEnded"
+				@click="endTournament"
+			>
+				End tournament
+			</button>
+		</div>
 		<RRTournamentResults v-bind="$props" />
-		<div>Rounds:</div>
 		<RRTournamentRound
+			class="tournament__round"
 			v-for="(round, index) in rounds"
 			:key="round.id"
 			:round="round"
@@ -11,12 +20,6 @@
 			:players-order="playersOrder"
 			:player-names="playerNames"
 		/>
-		<button
-			v-if="canTournamentBeEnded"
-			@click="endTournament"
-		>
-			End tournament
-		</button>
 	</div>
 </template>
 
@@ -73,4 +76,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.tournament__header {
+	display: flex;
+	margin-bottom: 30px;
+}
+.tournament__header-item {
+	align-self: flex-start;
+}
+.tournament__header-item:not(:last-child) {
+	margin-right: 15px;
+}
+.tournament__header-item:first-child {
+	margin-right: auto;
+}
 </style>
