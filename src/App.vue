@@ -18,6 +18,7 @@
 					:tournament-index="selectedTournamentIndex"
 					:key="selectedTournament.id"
 					@tournament-end="endTournament"
+					@tournament-delete="deleteTournament"
 				/>
 				<RRTournamentCreate
 					v-else
@@ -76,6 +77,9 @@ export default {
 		},
 		endTournament(index) {
 			this.tournaments[index].hasEnded = true;
+		},
+		deleteTournament(index) {
+			this.tournaments.splice(index, 1);
 		},
 		showTournament(index) {
 			this.selectedTournamentIndex = index;

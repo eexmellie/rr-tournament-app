@@ -9,6 +9,12 @@
 			>
 				End tournament
 			</button>
+			<button
+				class="tournament__header-item button button--danger"
+				@click="deleteTournament"
+			>
+				Delete tournament
+			</button>
 		</div>
 		<RRTournamentResults v-bind="$props" />
 		<RRTournamentRound
@@ -69,6 +75,9 @@ export default {
 	methods: {
 		endTournament() {
 			this.$emit('tournament-end', this.tournamentIndex);
+		},
+		deleteTournament() {
+			this.$emit('tournament-delete', this.tournamentIndex);
 		}
 	}
 }
