@@ -54,6 +54,8 @@
 </template>
 
 <script>
+import dialogPolyfill from "dialog-polyfill";
+
 export default {
 	name: 'RRTournamentAddScores',
 	props: {
@@ -71,6 +73,9 @@ export default {
 			playerAScore: null,
 			playerBScore: null
 		}
+	},
+	mounted() {
+		dialogPolyfill.registerDialog(this.$el);
 	},
 	methods: {
 		submitMatchScores() {
@@ -96,6 +101,9 @@ export default {
 	border-radius: 5px;
 }
 .dialog::backdrop { /* native */
+	background-color: rgba(0, 0, 0, .6);
+}
+.dialog + .backdrop { /* polyfill */
 	background-color: rgba(0, 0, 0, .6);
 }
 </style>
