@@ -65,98 +65,98 @@ import {MAX_GAMES_PER_MATCH} from "../constants.js";
 import RRTournamentAddScores from './RRTournamentAddScores.vue';
 
 export default {
-	name: 'RRTournamentRound',
-	components: {
-		RRTournamentAddScores
-	},
-	props: {
-		round: {
-			type: Object,
-			required: true
-		},
-		roundNumber: {
-			type: Number,
-			required: true
-		},
-		playersOrder: {
-			type: Array,
-			required: true
-		},
-		playerNames: {
-			type: Object,
-			required: true
-		}
-	},
-	data() {
-		return {
-			MAX_GAMES_PER_MATCH,
-			activeMatch: null,
-		}
-	},
-	computed: {
-		numberOfUnplayableGames() {
-			return this.round.matches.reduce((acc, match) => {
-				acc[match.id] = MAX_GAMES_PER_MATCH - match.games.length
-				
-				if (!match.matchWinnerId) {
-					acc[match.id]--;
-				}
+  name: 'RRTournamentRound',
+  components: {
+    RRTournamentAddScores
+  },
+  props: {
+    round: {
+      type: Object,
+      required: true
+    },
+    roundNumber: {
+      type: Number,
+      required: true
+    },
+    playersOrder: {
+      type: Array,
+      required: true
+    },
+    playerNames: {
+      type: Object,
+      required: true
+    }
+  },
+  data() {
+    return {
+      MAX_GAMES_PER_MATCH,
+      activeMatch: null,
+    }
+  },
+  computed: {
+    numberOfUnplayableGames() {
+      return this.round.matches.reduce((acc, match) => {
+        acc[match.id] = MAX_GAMES_PER_MATCH - match.games.length
+        
+        if (!match.matchWinnerId) {
+          acc[match.id]--;
+        }
 
-				return acc;
-			}, {});
-		}
-	},
-	methods: {
-		setActiveMatch(match) {
-			this.activeMatch = match;
-			this.$nextTick(this.showScoresModal);
-			
-		},
-		showScoresModal() {
-			this.$refs.modal.$el.showModal();
-		},
-		setGameScores(scores) {
-			this.activeMatch.games.push({
-				id: crypto.randomUUID(),
-				scores: [scores.playerAScore, scores.playerBScore],
-				gameWinnerId: this.getGameWinnerId(scores)
-			});
+        return acc;
+      }, {});
+    }
+  },
+  methods: {
+    setActiveMatch(match) {
+      this.activeMatch = match;
+      this.$nextTick(this.showScoresModal);
+      
+    },
+    showScoresModal() {
+      this.$refs.modal.$el.showModal();
+    },
+    setGameScores(scores) {
+      this.activeMatch.games.push({
+        id: crypto.randomUUID(),
+        scores: [scores.playerAScore, scores.playerBScore],
+        gameWinnerId: this.getGameWinnerId(scores)
+      });
 
-			this.maybeSetMatchWinner();
+      this.maybeSetMatchWinner();
 
-			this.unsetActiveMatch();
-		},
-		unsetActiveMatch() {
-			this.activeMatch = null;
-		},
-		getGameWinnerId(scores) {
-			const winnerIndex = scores.playerAScore > scores.playerBScore ? 0 : 1
-			return this.activeMatch.playerIds[winnerIndex];
-		},
-		maybeSetMatchWinner() {
-			const requiredNumberOfWins = Math.ceil(MAX_GAMES_PER_MATCH / 2);
-			const playerWins = {
-				[this.activeMatch.playerIds[0]]: 0,
-				[this.activeMatch.playerIds[1]]: 0
-			};
-			for (const game of this.activeMatch.games) {
-				const winnerId = game.gameWinnerId;
-				playerWins[winnerId]++;
-				if (playerWins[winnerId] === requiredNumberOfWins) {
-					this.activeMatch.matchWinnerId = winnerId;
-					return;
-				}
-			}
-		}
-	}
+      this.unsetActiveMatch();
+    },
+    unsetActiveMatch() {
+      this.activeMatch = null;
+    },
+    getGameWinnerId(scores) {
+      const winnerIndex = scores.playerAScore > scores.playerBScore ? 0 : 1
+      return this.activeMatch.playerIds[winnerIndex];
+    },
+    maybeSetMatchWinner() {
+      const requiredNumberOfWins = Math.ceil(MAX_GAMES_PER_MATCH / 2);
+      const playerWins = {
+        [this.activeMatch.playerIds[0]]: 0,
+        [this.activeMatch.playerIds[1]]: 0
+      };
+      for (const game of this.activeMatch.games) {
+        const winnerId = game.gameWinnerId;
+        playerWins[winnerId]++;
+        if (playerWins[winnerId] === requiredNumberOfWins) {
+          this.activeMatch.matchWinnerId = winnerId;
+          return;
+        }
+      }
+    }
+  }
 }
 </script>
-
+  
 <style scoped>
 .round {
-	margin-bottom: var(--spacing-big);
+  margin-bottom: var(--spacing-big);
 }
 .round__title {
-	margin-bottom: var(--spacing);
+  margin-bottom: var(--spacing);
 }
 </style>

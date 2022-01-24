@@ -43,71 +43,71 @@ import RRTournamentCreate from './components/RRTournamentCreate.vue';
 import RRTournamentList from './components/RRTournamentList.vue';
 
 export default {
-	name: 'App',
-	components: {
-		RRTournament,
-		RRTournamentCreate,
-		RRTournamentList
-	},
-	data() {
-		return {
-			selectedTournamentIndex: null,
-			tournaments: []
-		}
-	},
-	computed: {
-		selectedTournament() {
-			return this.tournaments[this.selectedTournamentIndex];
-		}
-	},
-	watch: {
-		tournaments: {
-			deep: true,
-			handler () {
-				localStorage.setItem("tournaments", JSON.stringify(this.tournaments));
-			}
-		}
-	},
-	mounted() {
-		if (localStorage.getItem("tournaments")) {
-			try {
-				this.tournaments = JSON.parse(localStorage.getItem("tournaments"));
-			} catch(e) {
-				localStorage.removeItem('tournaments');
-			}
-		}
-	},
-	methods: {
-		createTournament() {
-			this.selectedTournamentIndex = null;
-		},
-		startTournament({tournamentName, tournamentId, players}) {
-			const playerNames = players.reduce((acc, player) => {
-				acc[player.id] = player.name;
-				return acc;
-			}, {});
-			const playersOrder = players.map(player => player.id);
-			const tournament = {
-				name: tournamentName,
-				id: tournamentId,
-				playerNames,
-				playersOrder,
-				rounds: generateTournamentBracket(playersOrder),
-				hasEnded: false
-			};
-			this.tournaments.push(tournament);
-			this.selectedTournamentIndex = this.tournaments.length - 1;
-		},
-		endTournament(index) {
-			this.tournaments[index].hasEnded = true;
-		},
-		deleteTournament(index) {
-			this.tournaments.splice(index, 1);
-		},
-		showTournament(index) {
-			this.selectedTournamentIndex = index;
-		}
-	}
+  name: 'App',
+  components: {
+    RRTournament,
+    RRTournamentCreate,
+    RRTournamentList
+  },
+  data() {
+    return {
+      selectedTournamentIndex: null,
+      tournaments: []
+    }
+  },
+  computed: {
+    selectedTournament() {
+      return this.tournaments[this.selectedTournamentIndex];
+    }
+  },
+  watch: {
+    tournaments: {
+      deep: true,
+      handler () {
+        localStorage.setItem("tournaments", JSON.stringify(this.tournaments));
+      }
+    }
+  },
+  mounted() {
+    if (localStorage.getItem("tournaments")) {
+      try {
+        this.tournaments = JSON.parse(localStorage.getItem("tournaments"));
+      } catch(e) {
+        localStorage.removeItem('tournaments');
+      }
+    }
+  },
+  methods: {
+    createTournament() {
+      this.selectedTournamentIndex = null;
+    },
+    startTournament({tournamentName, tournamentId, players}) {
+      const playerNames = players.reduce((acc, player) => {
+        acc[player.id] = player.name;
+        return acc;
+      }, {});
+      const playersOrder = players.map(player => player.id);
+      const tournament = {
+        name: tournamentName,
+        id: tournamentId,
+        playerNames,
+        playersOrder,
+        rounds: generateTournamentBracket(playersOrder),
+        hasEnded: false
+      };
+      this.tournaments.push(tournament);
+      this.selectedTournamentIndex = this.tournaments.length - 1;
+    },
+    endTournament(index) {
+      this.tournaments[index].hasEnded = true;
+    },
+    deleteTournament(index) {
+      this.tournaments.splice(index, 1);
+    },
+    showTournament(index) {
+      this.selectedTournamentIndex = index;
+    }
+  }
 }
 </script>
 

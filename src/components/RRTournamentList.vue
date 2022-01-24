@@ -33,69 +33,69 @@
 
 <script>
 export default {
-	name: 'RRTournamentList',
-	props: {
-		tournaments: {
-			type: Array,
-			required: true
-		},
-		value: {
-			type: Number,
-			default: null
-		}
-	},
-	computed: {
-		selectedTournament: {
-			get() {
-				return this.value;
-			},
-			set(value) {
-				this.$emit('input', value);
-			}
-		}
-	},
-	methods: {
-		createTournament() {
-			this.$emit("tournament-create");
-		}
-	}
+  name: 'RRTournamentList',
+  props: {
+    tournaments: {
+      type: Array,
+      required: true
+    },
+    value: {
+      type: Number,
+      default: null
+    }
+  },
+  computed: {
+    selectedTournament: {
+      get() {
+        return this.value;
+      },
+      set(value) {
+        this.$emit('input', value);
+      }
+    }
+  },
+  methods: {
+    createTournament() {
+      this.$emit("tournament-create");
+    }
+  }
 }
 </script>
 
 <style scoped>
 .sidebar__list {
-	list-style: none;
-	text-align: left;
+  list-style: none;
+  text-align: left;
 }
 .sidebar__item {
-	display: flex;
-	align-items: center;
-	margin-bottom: var(--spacing-small);
-	font-size: 16px;
-	cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-small);
+  font-size: 16px;
+  cursor: pointer;
 }
 .sidebar__radio {
-	position: absolute;
-	opacity: 0; 
-	width: 1em;
-	height: 1em;
-	z-index: -1;
+  position: absolute;
+  opacity: 0; 
+  width: 1em;
+  height: 1em;
+  z-index: -1;
 }
 .sidebar__label {
-	padding: calc(var(--spacing-small) * 2) var(--spacing);
-	width: 100%;
-	border: 1px solid transparent;
-	border-radius: var(--spacing-small);
+  padding: calc(var(--spacing-small) * 2) var(--spacing);
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: var(--spacing-small);
 }
 .sidebar__radio:checked + .sidebar__label {
-	color: var(--primary-contrast-color);
-	background-color: var(--secondary-color);
+  color: var(--primary-contrast-color);
+  background-color: var(--secondary-color);
 }
 .sidebar__label:hover {
-	border-color: var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 .sidebar__button {
-	margin-bottom: var(--spacing-big);
-	width: 100%;
+  margin-bottom: var(--spacing-big);
+  width: 100%;
 }
 </style>

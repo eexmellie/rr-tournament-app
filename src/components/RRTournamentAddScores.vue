@@ -57,53 +57,53 @@
 import dialogPolyfill from "dialog-polyfill";
 
 export default {
-	name: 'RRTournamentAddScores',
-	props: {
-		playerAName: {
-			type: String,
-			required: true
-		},
-		playerBName: {
-			type: String,
-			required: true
-		}
-	},
-	data() {
-		return {
-			playerAScore: null,
-			playerBScore: null
-		}
-	},
-	mounted() {
-		dialogPolyfill.registerDialog(this.$el);
-	},
-	methods: {
-		submitMatchScores() {
-			// TODO: validate scores
-			const { playerAScore, playerBScore } = this;
-			this.$emit("submit-match-scores", {
-				playerAScore,
-				playerBScore
-			})
-		},
-		cancelModal() {
-			this.$emit('cancel-match-scores');
-		}
-	}
+  name: 'RRTournamentAddScores',
+  props: {
+    playerAName: {
+      type: String,
+      required: true
+    },
+    playerBName: {
+      type: String,
+      required: true
+    }
+  },
+  data() {
+    return {
+      playerAScore: null,
+      playerBScore: null
+    }
+  },
+  mounted() {
+    dialogPolyfill.registerDialog(this.$el);
+  },
+  methods: {
+    submitMatchScores() {
+      // TODO: validate scores
+      const { playerAScore, playerBScore } = this;
+      this.$emit("submit-match-scores", {
+        playerAScore,
+        playerBScore
+      })
+    },
+    cancelModal() {
+      this.$emit('cancel-match-scores');
+    }
+  }
 }
 </script>
 
 
 <style>
 .dialog {
-	padding: var(--spacing-big);
-	border: none;
-	border-radius: 5px;
+  padding: var(--spacing-big);
+  border: none;
+  border-radius: 5px;
 }
 .dialog::backdrop { /* native */
-	background-color: rgba(0, 0, 0, .6);
+  background-color: rgba(0, 0, 0, .6);
 }
 .dialog + .backdrop { /* polyfill */
-	background-color: rgba(0, 0, 0, .6);
+  background-color: rgba(0, 0, 0, .6);
 }
 </style>

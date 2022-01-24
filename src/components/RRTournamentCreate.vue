@@ -57,7 +57,7 @@
         Start tournament
       </button>
     </div>
-  </form>	
+  </form>
 </template>
 
 <script>
@@ -68,44 +68,44 @@
 // TODO: Add option to select type of tournament (BO3, BO5, etc..)
 
 export default {
-	name: 'RRTournamentCreate',
-	data() {
-		return {
-			tournamentName: '',
-			players: [
-				{
-					name: '',
-					id:  crypto.randomUUID()
-				}
-			]
-		}
-	},
-	computed: {
-		canTournamentBeStarted() {
-			return this.players.length >= 3
-		},
-		canAddPlayers() {
-			return this.players.every(player => player.name);
-		}
-	},
-	methods: {
-		add() {
-			this.players.push({
-				name: '',
-				id:  crypto.randomUUID()
-			});
-		},
-		remove(index) {
-			this.players.splice(index, 1);
-		},
-		startTournament() {
-			const {tournamentName, players} = this;
-			this.$emit('tournament-start', {
-				tournamentName,
-				tournamentId: crypto.randomUUID(),
-				players
-			})
-		}
-	}
+  name: 'RRTournamentCreate',
+  data() {
+    return {
+      tournamentName: '',
+      players: [
+        {
+          name: '',
+          id:  crypto.randomUUID()
+        }
+      ]
+    }
+  },
+  computed: {
+    canTournamentBeStarted() {
+      return this.players.length >= 3
+    },
+    canAddPlayers() {
+      return this.players.every(player => player.name);
+    }
+  },
+  methods: {
+    add() {
+      this.players.push({
+        name: '',
+        id:  crypto.randomUUID()
+      });
+    },
+    remove(index) {
+      this.players.splice(index, 1);
+    },
+    startTournament() {
+      const {tournamentName, players} = this;
+      this.$emit('tournament-start', {
+        tournamentName,
+        tournamentId: crypto.randomUUID(),
+        players
+      })
+    }
+  }
 }
 </script>

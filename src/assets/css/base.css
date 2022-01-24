@@ -1,124 +1,124 @@
 :root {
-	--primary-color: #4B49AC;
-	--secondary-color: #7DA0FA;
-	--primary-contrast-color: #fff;
-	--secondary-contrast-color: #F5F7FF;
-	--table-border-color: #ced4da;
-	--disabled-color: rgba(0, 0, 0, 0.25);
-	--text-color: #1f1f1f;
-	--danger-color: #8C1C13;
+  --primary-color: #4B49AC;
+  --secondary-color: #7DA0FA;
+  --primary-contrast-color: #fff;
+  --secondary-contrast-color: #F5F7FF;
+  --table-border-color: #ced4da;
+  --disabled-color: rgba(0, 0, 0, 0.25);
+  --text-color: #1f1f1f;
+  --danger-color: #8C1C13;
 
-	--spacing: 15px;
-	--spacing-big: 30px;
-	--spacing-small: 5px;
+  --spacing: 15px;
+  --spacing-big: 30px;
+  --spacing-small: 5px;
 }
 *,
 *::before,
 *::after {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 body {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	font-size: 18px;
-	background-color: var(--primary-contrast-color);
-	color: var(--text-color);
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 18px;
+  background-color: var(--primary-contrast-color);
+  color: var(--text-color);
 }
 table {
-	border-collapse: collapse;
+  border-collapse: collapse;
 }
 td, th {
-	padding: var(--spacing);
+  padding: var(--spacing);
 }
 .app {
-	min-height: 100vh;
-	display: flex;
+  min-height: 100vh;
+  display: flex;
 }
 .app__title {
-	margin-bottom: var(--spacing-big);
+  margin-bottom: var(--spacing-big);
 }
 .app__sidebar {
-	width: 250px;
-	padding: var(--spacing);
-	background-color: var(--secondary-contrast-color);
+  width: 250px;
+  padding: var(--spacing);
+  background-color: var(--secondary-contrast-color);
 }
 .app__body {
-	width: calc(100% - 250px);
-	display: flex;
-	flex-direction: column;
+  width: calc(100% - 250px);
+  display: flex;
+  flex-direction: column;
 }
 .app__footer {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
 }
 .app__content {
-	flex-grow: 1;
-	min-height: calc(100vh - 60px);
-	padding: var(--spacing-big);
-	padding-bottom: 0;
+  flex-grow: 1;
+  min-height: calc(100vh - 60px);
+  padding: var(--spacing-big);
+  padding-bottom: 0;
 }
 .title {
-	color: var(--primary-color);
-	font-weight: 700;
-	font-size: 25px;
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 25px;
 }
 .button {
-	min-height: 40px;
-	padding: calc(var(--spacing-small) * 2) var(--spacing);
-	font-weight: 700;
-	color: var(--primary-contrast-color);
-	background-color: var(--primary-color);
-	border: 1px solid transparent;
-	border-radius: var(--spacing-small);
+  min-height: 40px;
+  padding: calc(var(--spacing-small) * 2) var(--spacing);
+  font-weight: 700;
+  color: var(--primary-contrast-color);
+  background-color: var(--primary-color);
+  border: 1px solid transparent;
+  border-radius: var(--spacing-small);
 }
 .button--round {
-	padding: 0;
-	width: 20px;
-	height: 20px;
-	min-height: 20px;
-	border-radius: 50%;
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  min-height: 20px;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 .button:hover:enabled {
-	color: inherit;
-	background-color: inherit;
-	border: 1px solid var(--primary-color);
+  color: inherit;
+  background-color: inherit;
+  border: 1px solid var(--primary-color);
 }
 .button--danger {
-	background-color: var(--danger-color);
+  background-color: var(--danger-color);
 }
 .button--danger:hover:enabled {
-	border-color: var(--danger-color);
+  border-color: var(--danger-color);
 }
 .button:disabled {
-	background-color: var(--disabled-color);
+  background-color: var(--disabled-color);
 }
 .form {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
 }
 .form__row input:not(:last-child),
 .form__row button:not(:last-child) {
-	margin-right: calc(var(--spacing-small) * 2);
+  margin-right: calc(var(--spacing-small) * 2);
 }
 .form__label {
-	display: block;
-	margin-bottom: var(--spacing-small);
+  display: block;
+  margin-bottom: var(--spacing-small);
 }
 .form__input {
-	height: 40px;
-	width: 250px;
-	padding: 0 var(--spacing-small);
-	border: 1px solid #4747A1;
+  height: 40px;
+  width: 250px;
+  padding: 0 var(--spacing-small);
+  border: 1px solid #4747A1;
 }
 .form__input:not(:last-child) {
-	margin-bottom: calc(var(--spacing-small) * 2);
+  margin-bottom: calc(var(--spacing-small) * 2);
 }
