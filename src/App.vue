@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import {generateTournamentBracket} from './utils/brackets.js';
+import {generateTournamentBracket} from './assets/js/brackets.js';
 import RRTournament from './components/RRTournament.vue';
 import RRTournamentCreate from './components/RRTournamentCreate.vue';
 import RRTournamentList from './components/RRTournamentList.vue';
