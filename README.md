@@ -1,6 +1,6 @@
 # Round-robin Tournamnet Management App
 
-This app allows user to create, hold and review tournaments based on [round-robin tournament scheme](https://en.wikipedia.org/wiki/Round-robin_tournament). 
+This app allows user to create, hold and review tournaments based on [round-robin tournament scheme](https://en.wikipedia.org/wiki/Round-robin_tournament). You can watch live demo [here](https://eexmellie.github.io/rr-tournament-app/).
 
 ## Games and Matches
 Each *tournament* consists of multiple *rounds*,  each *round* consists of multiple *games*.
