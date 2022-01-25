@@ -52,8 +52,8 @@
     <RRTournamentAddScores
       v-if="activeMatch"
       ref="modal"
-      :player-b-name="playerNames[activeMatch.playerIds[0]]"
       :player-a-name="playerNames[activeMatch.playerIds[0]]"
+      :player-b-name="playerNames[activeMatch.playerIds[1]]"
       @submit-match-scores="setGameScores"
       @cancel-match-scores="unsetActiveMatch"
     />
